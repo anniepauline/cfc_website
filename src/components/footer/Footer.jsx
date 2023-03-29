@@ -1,8 +1,8 @@
 import "./Footer.css";
-import { ReactComponent as Home } from "../icons/home.svg";
-import { ReactComponent as Search } from "../icons/magnifying-glass.svg";
-import { ReactComponent as Menu } from "../icons/menu.svg";
-import { ReactComponent as Library } from "../icons/library.svg";
+import { ReactComponent as Home } from "../../icons/home.svg";
+import { ReactComponent as Search } from "../../icons/magnifying-glass.svg";
+import { ReactComponent as Menu } from "../../icons/menu.svg";
+import { ReactComponent as Library } from "../../icons/library.svg";
 
 
 function Footer() {
