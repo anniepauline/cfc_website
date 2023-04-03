@@ -1,0 +1,19 @@
+.details{
+    display: inline-block;
+    padding-left:5%;
+}
+.title>h1{
+    font-weight: 500;
+    font-size:5.1vw;
+}
+.time{
+    color: #6E1311; 
+    letter-spacing: 0.270277px;
+    font-weight: 500;
+    font-size:3.4vw;
+}
+/* .head-qna p{
+    font-size:3vw;
+    font-weight:500;
+    letter-spacing: 0.270277px;
+} */
