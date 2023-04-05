@@ -1,0 +1,11 @@
+p{
+    color: #222222;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 30px;
+    font-size:calc(1.380rem + 1.5vw);
+}
+
+.container{
+    padding:15px;
+}

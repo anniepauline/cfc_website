@@ -1,16 +1,16 @@
 import   './card.css';
 import * as React from 'react';
-import Thumbnail from '../thumbnail/Thumbnail.jsx';
-import Content from '../content/Content.jsx';
-import Dots from '../dots/Dots.jsx';
+import Thumbnail from './thumbnail/Thumbnail.jsx';
+import Content from './content/Content.jsx';
+import Dots from './dots/Dots.jsx';
 //import Avatar from '@mui/material/Avatar';
 // import SvgIcon, { SvgIconProps } from "@material-ui/core/SvgIcon";
 
 function Card()
 {
     return (
-    <div class = "card-container">
-        <div class = " card container-fluid d-flex flex-row rounded-0 border border-1 p-0">
+    <div class = "card-container p-0">        
+        <div class = " card container-fluid d-flex flex-row rounded-0 border border-1 border-bottom-0 p-0">
             <div class = "card-item ">                   
                 <Thumbnail/>                    
                 <Content/>

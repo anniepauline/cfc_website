@@ -2,14 +2,7 @@
     padding:2.5vh 0 2.5vh 0;   
 }
 .card-item{
-    padding-top: 25px;
+    padding-top: 15px;
     padding-bottom:15px;
     width:90%;
-    font-family: 'Inter', sans-serif;
 }
-
-.head-qna h1{
-    font-size:4.3vw;
-    font-weight:400;
-}
-
