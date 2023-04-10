@@ -1,38 +1,30 @@
 import Footer from "./components/footer/Footer.jsx";
 import Card from "./components/card/Card.jsx";
 import Buttons from "./components/buttons/Button.jsx";
-import Avatar from '@mui/material/Avatar';
+import Speakers from "./components/speakers/Speakers.jsx";
 import './app.css';
 
 function App() {   
   return (
-    <div className="App">    
-        <div class = "container-fluid">
-          <Buttons/>
-          <p>Other Speakers</p>
-          <div class = "img d-flex">
-          <Avatar
-              alt="Remy Sharp"
-              src="https://www.cfcindia.com/resources/en/images/app/sis-anne-card.png"
-              sx={{ width: 155, height: 155,bgcolor:"#CCBD8A" ,borderRadius:2,marginRight:1,}} variant="square"
-          />
-          <Avatar
-              alt="Remy Sharp"
-              src="https://www.cfcindia.com/resources/en/images/app/br-santosh-card.png"
-              sx={{ width: 155, height: 155,bgcolor:"#F9B081" ,borderRadius:2,marginRight:1,}} variant="square"
-          />
-          <Avatar
-              alt="Remy Sharp"
-              src="https://www.cfcindia.com/resources/en/images/app/br-sandeep-card.png"
-              sx={{ width: 155, height: 155,bgcolor:"#D3D3D3" ,borderRadius:2,marginRight:1,}} variant="square"
-          />
-          </div>
-          <p>Questions & Answers</p>
+    <div className="App">      
+      <div class ="top">
+        <div id = "title">
+          <p >Zac Poonen</p>
+          <p >ANSWERS</p>
+          <hr class = "line"/>
+          <p >Listen to Zac Poonen’s answers to over 600 questions, which is a treasure house of wisdom.</p>
         </div>
-        <Card/>         
-        <Card/>     
-        <Card/>   
-        <Footer/>           
+        <img src = "https://www.cfcindia.com/resources/en/images/app/br-zac-right-card.png" alt = "main-img"/>
+      </div>
+      <div class = "container container-fluid">
+          <Buttons/>        
+          <Speakers/>        
+          <p class = "para">Questions & Answers</p>
+      </div>
+      <Card/>         
+      <Card/>     
+      <Card/>   
+      <Footer/>           
     </div>
   );
 }

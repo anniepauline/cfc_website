@@ -8,19 +8,18 @@
     flex-direction: column;  
 }
 /* caption styles */
-li:hover .caption{
+li:hover .footer-caption{
   font-weight: 500;
   color:#6E1311;
 }
 
-.caption{
+.footer-caption{
   padding-top: 7px;
   line-height: 16px;
   color: #757575;
   letter-spacing: 0.270277px;
   font-weight: 400;
-  font-size: 12px;
-
+  font-size: 3.3vw;
 }
 
 /* Icon styling */
@@ -66,6 +65,6 @@ li:hover .caption{
 }  
 #library:hover linearGradient stop:nth-child(3){
     offset: 100% !important;
-    stop-color: #691210 !important;
+    stop-color: #F8F8F8 !important;
 }  
 
