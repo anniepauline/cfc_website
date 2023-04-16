@@ -1,4 +1,4 @@
-import "./Footer.css";
+import "./footer.css";
 import { ReactComponent as Home } from "../../icons/home.svg";
 import { ReactComponent as Search } from "../../icons/magnifying-glass.svg";
 import { ReactComponent as Menu } from "../../icons/menu.svg";
@@ -12,19 +12,19 @@ function Footer() {
         <ul className="navbar-nav d-flex flex-row w-100 ">
         <li className="iconHolder nav-item">
           <Home id="home" />
-          <span className = "caption nav-link active " href="#" aria-current="page">Home</span> 
+          <span className = "footer-caption" href="#" aria-current="page">Home</span> 
         </li>
         <li className="iconHolder nav-item">
           <Library id="library" />
-          <span class = "caption">Library</span>
+          <span class = "footer-caption">Library</span>
         </li>
         <li className="iconHolder nav-item">
           <Search id="search" />
-          <span class = "caption">Search</span>
+          <span class = "footer-caption">Search</span>
         </li>
         <li className="iconHolder nav-item">
           <Menu id="menu" />
-          <span class = "caption">About</span>
+          <span class = "footer-caption">About</span>
         </li>
         </ul>
       </nav>

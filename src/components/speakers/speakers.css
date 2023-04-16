@@ -1,0 +1,28 @@
+.img{
+   
+}
+.speaker{   
+    overflow-x:scroll;
+    margin-bottom: 1%;
+    display: flex;
+    align-items:center;
+}
+.speaker::-webkit-scrollbar {
+    display: none;
+  }
+.caption{
+ text-align:center;
+ font-weight: 400;
+ color: #222222;
+ letter-spacing: 0.270277px;
+ font-size: 3.5vw;
+  }
+  .para{
+    color: #222222;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    font-size:5.5vw;
+    margin-top:5vw;
+    margin-bottom: 3%;
+}
