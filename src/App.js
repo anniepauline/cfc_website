@@ -24,4 +24,9 @@ function App() {
       </div>
       <Card/>         
       <Card/>     
-      <Card/> 
+      <Card/>   
+      <Footer/>           
+    </div>
+  )
+}
+export default App;
