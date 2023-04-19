@@ -27,8 +27,8 @@ function Speakers()
                 <span className = "caption " href="#" aria-current="page">Annie Poonen</span> 
             </div>
            
-            {}
-            {/* <div class = "img d-flex flex-column">
+            
+         <div class = "img d-flex flex-column">
                 <Avatar
                     alt="Remy Sharp"
                     src="https://www.cfcindia.com/resources/en/images/app/br-santosh-card.png"
@@ -44,7 +44,7 @@ function Speakers()
                     sx={{ width: '32vw', height: '32vw',bgcolor:"#D3D3D3" ,borderRadius:2,marginRight:2,}} variant="square"
                 />
                 <span className = "caption " href="#" aria-current="page">Sandeep Poonen</span> 
-            </div> */}
+            </div> 
         </div>
         </div>
     );
