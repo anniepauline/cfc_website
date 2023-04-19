@@ -14,7 +14,7 @@ li:hover .footer-caption{
 }
 
 .footer-caption{
-  padding-top: 7px;
+  padding-top: 0.2vh;
   line-height: 16px;
   color: #757575;
   letter-spacing: 0.270277px;

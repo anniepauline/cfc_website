@@ -1,17 +1,43 @@
 import axios from 'axios';
 
-var response = axios.get("https://cfc-study-app.adlaiapp.com/apis/qas/",
-{
-  headers: {
-    'content-type':'application/vnd.api+json',
-    'Authorization' : 'Token c9915b1890ea06a2cb1fb33d79fe745722e1db97',
-  },
+ function getAuthors() {
+   axios.get("https://cfc-study-app.adlaiapp.com/apis/commons/",
+ {
+   headers: {
+     'content-type':'application/vnd.api+json',
+     'Authorization' : process.env.REACT_APP_APIKEY,
+   },
+ }).then(response => {
+        let data = localStorage.getItem("authors"); 
+        if(data)
+        {
+            localStorage.setItem("authors",JSON.stringify(response.data));
+            data = localStorage.getItem("authors");           
+          }
+        else{
+          localStorage.setItem("authors",JSON.stringify(response.data));
+          data = localStorage.getItem("authors");           
+        }   
 
-}).then(response => {
-  console.log(response.data)
- 
-}).catch(error => {
-  console.log(error);
-});
+ }).catch(error => {
+   console.log(error);
+ });
 
-export default response;
+}
+ export default getAuthors;
+
+
+// export function getAuthors(){
+//   axios.get('https://cfc-study-app.adlaiapp.com/apis/qas/',{
+//     headers:{
+//       'Content-Type':'application/vnd.api+json',
+//       'Authorization' : `${process.env.REACT_APP_APIKEY}`,
+//     },
+//   }).then(response=>{
+//     console.log(response.data)
+//   })
+//   .catch(error => {
+//        console.log(error);
+//      });
+// }
+//localStorage.setItem("authors",JSON.stringify(response.data));
