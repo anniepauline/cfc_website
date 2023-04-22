@@ -1,6 +1,6 @@
 import axios from 'axios';
 
- function getAuthors() {
+ export function getAuthors() {
    axios.get("https://cfc-study-app.adlaiapp.com/apis/commons/",
  {
    headers: {
@@ -8,15 +8,15 @@ import axios from 'axios';
      'Authorization' : process.env.REACT_APP_APIKEY,
    },
  }).then(response => {
-        let data = localStorage.getItem("authors"); 
+        let data = localStorage.getItem("commons"); 
         if(data)
         {
-            localStorage.setItem("authors",JSON.stringify(response.data));
-            data = localStorage.getItem("authors");           
+            localStorage.setItem("commons",JSON.stringify(response.data));
+            data = localStorage.getItem("commons");           
           }
         else{
-          localStorage.setItem("authors",JSON.stringify(response.data));
-          data = localStorage.getItem("authors");           
+          localStorage.setItem("commons",JSON.stringify(response.data));
+          data = localStorage.getItem("commons");           
         }   
 
  }).catch(error => {
@@ -24,7 +24,31 @@ import axios from 'axios';
  });
 
 }
- export default getAuthors;
+
+export function getQas()
+{
+  axios.get("https://cfc-study-app.adlaiapp.com/apis/qas/",
+ {
+   headers: {
+     'content-type':'application/vnd.api+json',
+     'Authorization' : process.env.REACT_APP_APIKEY,
+   },
+ }).then(response => {
+        let data = localStorage.getItem("qas"); 
+        if(data)
+        {
+            localStorage.setItem("qas",JSON.stringify(response.data));
+            data = localStorage.getItem("qas");           
+          }
+        else{
+          localStorage.setItem("qas",JSON.stringify(response.data));
+          data = localStorage.getItem("qas");           
+        }   
+
+ }).catch(error => {
+   console.log(error);
+ });
+}
 
 
 // export function getAuthors(){
