@@ -1,0 +1,6 @@
+.buttons{
+    display:flex;
+    flex-direction:row;
+    margin-top: 22px;
+    margin-bottom:22px;
+}

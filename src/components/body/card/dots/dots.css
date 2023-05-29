@@ -1,0 +1,16 @@
+.dots{
+    width: 10%;
+   position:relative;
+}
+.dots div{
+   display: inline-block;
+   position:absolute;
+   padding-top:40px;
+   text-align: center;
+}
+.dots p{
+    color:#B6B3B3;
+    position:relative;
+    font-size:6vw;  
+ 
+}
