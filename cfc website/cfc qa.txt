@@ -1,0 +1,507 @@
+https://www.figma.com/file/kBOH8hDPYPSR7sDt0jSakV/Bible-Study-App-Dev
+
+view ports - 
+api  - 
+pagination - 
+scroll 
+
+qna
+
+zac poonen only has featured 
+pagination- 10
+authors api - images, thumbnail images
+search api
+home lib - bible 
+library - 
+search - qa
+qa
+authors
+search
+filter author namme
+image on the home page 
+div structure 
+
+time - 
+
+drupal - replace support
+
+
+
+
+Day 1 (March 20 2023)
+
+1.Design all components like image holder, icons header, django
+
+/commons/  -> authors
+auth header
+
+modheader - 
+
+https://cfc-study-app.adlaiapp.com/apis/qas/
+Authors list : https://cfc-study-app.adlaiapp.com/apis/commons/
+Authorization : Token c9915b1890ea06a2cb1fb33d79fe745722e1db97
+/qas?page.......=10 at a time
+
+lazy loading
+829 questions
+features popular tabs later 
+home, authors, detials, search
+
+API- 
+
+qas/?page[number]=${pageNumber.toString()}&page[size]=${pageSize.toString()}&author[]=$author"
+
+/?page%5Bnumber%5D:gte:5&author__name=Zac+Poonen
+
+https://cfc-study-app.adlaiapp.com/apis/qas/?format=api&page%5Bnumber%5D=2
+search - qas?sort_by=latest&search=$query
+flutterIcons
+reactJS materila icons
+rambabu.davu@gmail.com
+
+nginx server
+create a brach a merge request
+review under ram babu
+
+
+
+const PayrollWrapper = () => {
+
+    // Set State for Payroll data
+    const [payrollRuns, setPayrollRuns] = useState([])
+
+    // Fetch data --> 1.)
+    useEffect(() => {
+
+        // Fetch the Payroll Data related to the logged in User
+        fetch(`http://127.0.0.1:8000/api/lastpayrollruns/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                 Authorization: `Token ${localStorage.getItem('token')}`
+            },
+        })
+        .then(res => res.json())
+        .then(data => {
+          setPayrollRuns(data)
+          });
+    }, []);
+}
+
+
+
+set offset, fetch data, update state to hold the prev and the new data
+
+
+
+Auth otken : Token 53be8fa373587fe629ad82df62c317a7e69e2cda
+'^' Starts-with search.
+'=' Exact matches.
+'@' Full-text search. (Currently only supported Django's PostgreSQL backend.)
+'$' Regex search.
+
+https://cfc-study-app.adlaiapp.com/apis/qas/?page%5Bnumber%5D=2
+https://picsum.photos/v2/list?page=0&limit=10,
+https://cfc-study-app.adlaiapp.com/apis/qas/?page=0&limit=10
+
+===========================================================================================
+import Footer from "./components/footer/Footer.jsx";
+import Card from "./components/body/card/Card.jsx";
+import Buttons from "./components/body/buttons/Button.jsx";
+import Speakers from "./components/body/speakers/Speakers.jsx";
+import Header from "./components/header/Header.jsx";
+import './app.css';
+import {getAuthors,getQas} from "./api.js";
+import  { useState,useEffect } from 'react';
+
+function App() {  
+  const [author,setAuthors] = useState([]);
+  const [qas,setQas] = useState([]);
+
+  useEffect(()=>{
+    getAuthors();
+    setAuthors(JSON.parse(localStorage.getItem('commons')).data.authors);
+
+    getQas();  
+    setQas(JSON.parse(localStorage.getItem('qas')).data);
+      },[]);
+      //console.log(qas);
+
+  return (
+    <div className="App">      
+      <Header/>
+      <div class = "container-fluid mid-section" >
+          <Buttons/> 
+          <Speakers authors = {author}/>        
+          <p class = "para">Questions & Answers</p>
+      </div>
+      
+      {qas.map(item=> <Card author ={item.attributes.author} 
+        title = {item.attributes.title}
+        type = {item.type}
+        start_time = {item.attributes.start_time}
+        end_time = {item.attributes.end_time} />
+         )}
+        
+                 
+      <Footer/>           
+    </div>
+  );
+}
+export default App;
+===========================================================================================
+card.js
+===============
+import   './card.css';
+import * as React from 'react';
+import Thumbnail from './thumbnail/Thumbnail.jsx';
+import Content from './content/Content.jsx';
+import Dots from './dots/Dots.jsx';
+//import Avatar from '@mui/material/Avatar';
+// import SvgIcon, { SvgIconProps } from "@material-ui/core/SvgIcon";
+
+function Card(props)
+{
+       
+        function zac()
+        {
+        const dat = props.qas;
+        const zacResult = dat.filter(data=> { return data.attributes.author.name ==="Zac Poonen"}) ;
+        return(zacResult);
+         }
+        
+
+
+    return (        
+    <div class = "card-container p-0">        
+        <div class = " card container-fluid d-flex flex-row rounded-0 border border-1 border-bottom-0 p-0">
+            <div class = "card-item ">                  
+                <Thumbnail thumbnail_data={props}/>
+                <Content content_data = {props} />
+            </div>
+            <Dots/>
+        </div>
+    </div>
+    );
+}
+export default Card;
+===========================================================================================
+speakers
+===================
+import Avatar from '@mui/material/Avatar';
+import './speakers.css';
+
+
+function Speakers(props)
+{    
+    function setBgColor(color)
+    {   
+        switch((color))
+        {
+        case "green":
+            color = '#CCBD8A';
+            break;
+        
+        case "red":
+            color = '#F9B081';
+            break;
+        case "blue":
+            color = '#D3D3D3';
+            break;
+        }
+        return color;
+
+    } 
+         
+    return (
+        <div>
+            <span>
+            <p class = "para">Other Speakers</p>
+          </span>  
+        <div class = "speaker">  
+         {props.authors.slice(1).map(((obj,index)=>{return ( <div class = "img d-flex flex-column" key = {index}>
+                <Avatar
+                    alt="Annie poonen"
+                    src={obj.image_url}
+                    sx={{ width:'32vw', height:'32vw',bgcolor:setBgColor(obj.theme) ,borderRadius:2,marginRight:2,}} variant="square"
+                />
+                <span className = "caption " href="#" aria-current="page">{obj.name}</span> 
+            </div>); }))} 
+        </div>
+        </div>
+    );
+}
+
+export default Speakers;
+===========================================================================================
+thumbnail
+====================
+import   './thumbnail.css'; 
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+
+function Thumbnail(props){
+    console.log(props.thumbnail_data);
+    return (
+                <div class = " wrapper d-flex flex-row">
+                          
+                     <Avatar
+                          alt="Remy Sharp"
+                          src={`${props.thumbnail_data.author.thumbnail_image_url}`}
+                          sx={{ width:"4vw", height: "4vw" }}
+                        />             
+                    
+                     <div class = "author">
+                         <p>By {props.thumbnail_data.author.name}</p>
+                     </div>
+                 </div>)                
+                 }
+
+export default Thumbnail;
+
+
+
+==========================================================================================
+getQas()
+{
+let newData=[];
+axios.get url.then(response=>{
+	
+})
+}
+
+.then(data=>{
+	limit = JSON.stringify(response.data.meta.pagination.pages);
+	while(limit!=NULL)
+	{
+		
+ 	 axios.get(data.links.next).then(newData=>{
+	data = data + newData;
+	
+	})
+	localStorage.setItem("qas",JSON.stringify(response.data));
+	}
+})
+
+get the api fetch to work.
+fetch the first page data to fetch other pages iteratively.
+(option:1=>fetch all pages in array and store in local storage )
+and store in a variable newData
+get local storage to check if data already exixts, then update data by using setInterval
+if data does not exist in local storage =>
+set local storage to newVariable
+
+
+OR
+get the api fetch to work.
+fetch the first page data to fetch other pages iteratively.
+option 2=> fetch pages and append them to localStorage iteratively as each page is fetched.
+get localStorage to check if data already exixts, then update data by using setInterval
+if data does not exist in local storage =>
+set local storage to newVariable
+
+ then(response => {
+        let data = localStorage.getItem("qas"); 
+        if(data)
+        {
+            localStorage.setItem("qas",JSON.stringify(response.data));
+            data = localStorage.getItem("qas");           
+          }
+        else{
+          localStorage.setItem("qas",JSON.stringify(response.data));
+          data = localStorage.getItem("qas");           
+        }   
+
+ })
+-------------------------------
+let results = []
+let baseURL = "https://cfc-study-app.adlaiapp.com/apis/qas/"
+let headers = {  'content-type':'application/vnd.api+json',
+     'Authorization' : process.env.REACT_APP_APIKEY }
+
+axios({baseURL:baseURL,
+headers:headers}).then(response => {
+results.push(..response.data))
+baseURL: response.data.links.next
+
+const axcall =()=>{axios({baseURL:baseURL,
+headers:headers}).then(response=>{results.push(..response.data)
+baseURL: response.data.links.next
+if(response.data.links.next !=null){axcall()}
+else{console.log(results)}
+}).catch(e=>console.log(e))}
+
+----------------------------------
+
+export function getQas()
+{
+  axios.get("https://cfc-study-app.adlaiapp.com/apis/qas/",
+ {
+   headers: {
+     'content-type':'application/vnd.api+json',
+     'Authorization' : process.env.REACT_APP_APIKEY,
+   },
+ }).then(response => {
+        let data = localStorage.getItem("qas"); 
+        if(data)
+        {
+            localStorage.setItem("qas",JSON.stringify(response.data));
+            data = localStorage.getItem("qas");           
+          }
+        else{
+          localStorage.setItem("qas",JSON.stringify(response.data));
+          data = localStorage.getItem("qas");           
+        }   
+
+ }).catch(error => {
+   console.log(error);
+ });
+}
+
+
+----------------------------------------------------------------------------------
+updated api.hs
+---------------
+import axios from 'axios';
+
+export function getAuthors() {
+  axios.get("https://cfc-study-app.adlaiapp.com/apis/commons/",
+    {
+      headers: {
+        'content-type': 'application/vnd.api+json',
+        'Authorization': process.env.REACT_APP_APIKEY,
+      },
+    }).then(response => {
+      let data = localStorage.getItem("commons");
+      if (data) {
+        localStorage.setItem("commons", JSON.stringify(response.data));
+        localStorage.getItem("commons");
+      }
+      else {
+        localStorage.setItem("commons", JSON.stringify(response.data));
+        localStorage.getItem("commons");
+      }
+
+    }).catch(error => {
+      console.log(error);
+    });
+
+}
+
+
+export function getQas() {
+  let results = []
+  let baseURL = "https://cfc-study-app.adlaiapp.com/apis/qas/"
+  let headers = {
+    'content-type': 'application/vnd.api+json',
+    'Authorization': process.env.REACT_APP_APIKEY
+  }
+
+  axios({ baseURL: baseURL, headers: headers, })
+    .then(response => {
+      results.push(response.data)
+      localStorage.setItem("qas",JSON.stringify(results));
+      var temp = JSON.parse(localStorage.getItem("qas"));
+      baseURL = response.data.links.next;
+
+      const axcall = () => {
+        axios({ baseURL: baseURL, headers: headers })
+          .then(response => {
+            temp.push((response.data))
+            localStorage.setItem("qas", JSON.stringify(temp));       
+            baseURL = response.data.links.next;
+            
+            //var result = JSON.parse(localStorage.getItem("qas"));
+            //console.log(result);
+            if (response.data.links.next != null) {
+              return axcall();
+            }
+            // rm later
+            else {
+              //var res = JSON.parse(localStorage.getItem("qas"));
+              //return res;
+            }
+          }).catch(e => console.log(e))
+      }
+      axcall()
+       
+    })
+}
+
+// var students = [];
+// var student1 = { s: 1 };
+// students.push(student1);
+// localStorage.setItem("students", JSON.stringify(students));
+// var stored = JSON.parse(localStorage.getItem("students"));
+// var student2 = { s: 2 };
+//  stored.push(student2);
+//  localStorage.setItem("students", JSON.stringify(stored));
+// var result = JSON.parse(localStorage.getItem("students"));
+
+// export function getAuthors(){
+//   axios.get('https://cfc-study-app.adlaiapp.com/apis/qas/',{
+//     headers:{
+//       'Content-Type':'application/vnd.api+json',
+//       'Authorization' : `${process.env.REACT_APP_APIKEY}`,
+//     },
+//   }).then(response=>{
+//     console.log(response.data)
+//   })
+//   .catch(error => {
+//        console.log(error);
+//      });
+// }
+//localStorage.setItem("authors",JSON.stringify(response.data));
+
+----------------------------------------------------------------------
+App.js
+---------------
+import Footer from "./components/footer/Footer.jsx";
+import Card from "./components/body/card/Card.jsx";
+import Buttons from "./components/body/buttons/Button.jsx";
+import Speakers from "./components/body/speakers/Speakers.jsx";
+import Header from "./components/header/Header.jsx";
+import './app.css';
+import {getAuthors,getQas} from "./api.js";
+import  { useState,useEffect } from 'react';
+
+function App() {  
+  const [author,setAuthors] = useState([]);
+  const [qas,setQas] = useState([]);
+
+  useEffect(()=>{
+    getAuthors();
+    setAuthors(JSON.parse(localStorage.getItem('commons')).data.authors); 
+    
+    // const localQas = localStorage.getItem('qas');
+    // if(localQas)
+    // {
+    //   setQas(JSON.parse(localQas));
+    // }
+    // console.log(qas);
+      },[]);
+      
+  return (
+    <div className="App">      
+      <Header/>
+      <div class = "container-fluid mid-section" >
+          <Buttons/> 
+          <Speakers authors = {author}/>        
+          <p class = "para">Questions & Answers</p>
+      </div>
+      <Card qas = {qas}/>              
+      <Footer/>           
+    </div>
+  );
+}
+export default App;
+
+The more you sweat in peace, the less you bleed in war
+
+
+IndexedDB=>
+DB stores Object stores 
+IDBRequest-async send req, get a res 
+IDBIndex - are added to the obj store.
+IDBcursor - keeps track of the curr pos in the result of the res
+IDBkeyRange-a range of values matching a key

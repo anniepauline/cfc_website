@@ -9,6 +9,7 @@
 }
 .speaker::-webkit-scrollbar {
     display: none;
+    overflow-x:scroll;
   }
 .caption{
  text-align:center;
