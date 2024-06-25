@@ -1,0 +1,19 @@
+set up the styles
+set the server folder
+index.js
+npm install express
+npm i nodemon
+intialize app.listen
+install mongoose
+create mongoDB connection(try and catch)
+import in index.js
+import dot env file into index
+create api with routes by importing express and router
+validate data coming from the front end by creating schema
+and importing it in the controller
+
+
+front end :
+npx create-react-app my-react-app
+cd my-react-app
+npm start

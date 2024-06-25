@@ -12,17 +12,18 @@ import axios from 'axios';
         if(data)
         {
             localStorage.setItem("commons",JSON.stringify(response.data));
-            data = localStorage.getItem("commons");           
+            data = localStorage.getItem("commons");  
+            return data;         
           }
         else{
           localStorage.setItem("commons",JSON.stringify(response.data));
-          data = localStorage.getItem("commons");           
+          data = localStorage.getItem("commons");  
+          return data;         
         }   
 
  }).catch(error => {
    console.log(error);
  });
-
 }
 
 export function getQas()
@@ -36,13 +37,15 @@ export function getQas()
  }).then(response => {
         let data = localStorage.getItem("qas"); 
         if(data)
-        {
+        {  
             localStorage.setItem("qas",JSON.stringify(response.data));
-            data = localStorage.getItem("qas");           
+            data = localStorage.getItem("qas");   
+            //return data;        
           }
         else{
           localStorage.setItem("qas",JSON.stringify(response.data));
-          data = localStorage.getItem("qas");           
+          data = localStorage.getItem("qas");   
+          //return data;        
         }   
 
  }).catch(error => {

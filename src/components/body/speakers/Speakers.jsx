@@ -2,7 +2,7 @@ import Avatar from '@mui/material/Avatar';
 import './speakers.css';
 
 
-function Speakers(props)
+export default function Speakers(props)
 {    
     function setBgColor(color)
     {   
@@ -18,18 +18,19 @@ function Speakers(props)
         case "blue":
             color = '#D3D3D3';
             break;
+        default :
+            color = 'grey';
         }
         return color;
 
     } 
-         
     return (
         <div>
             <span>
             <p class = "para">Other Speakers</p>
-          </span>  
-        <div class = "speaker">  
-         {props.authors.slice(1).map(((obj,index)=>{return ( <div class = "img d-flex flex-column" key = {index}>
+            </span>  
+            <div class = "speaker">  
+                {props.authors.slice(0).map(((obj,index)=>{return ( <div     onClick={() => props.onAuthorSelect(obj.name)} class = "img d-flex flex-column" key = {index}>
                 <Avatar
                     alt="Annie poonen"
                     src={obj.image_url}
@@ -42,4 +43,3 @@ function Speakers(props)
     );
 }
 
-export default Speakers;
