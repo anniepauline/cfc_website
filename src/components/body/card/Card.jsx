@@ -8,9 +8,7 @@ import Dots from './dots/Dots.jsx';
 
 function Card(props)
 {
-    
     return (
-
     <div class = "card-container p-0">        
         <div class = " card container-fluid d-flex flex-row rounded-0 border border-1 border-bottom-0 p-0">
             <div class = "card-item ">                   
